@@ -74,7 +74,7 @@ export const Overlay: FC<{
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.15, ease: "easeInOut" }}
-      className={`fixed z-40 top-0 md:w-1/2 w-3/4 bg-white flex flex-col gap-4 overflow-y-auto h-full ${
+      className={`fixed z-40 top-0 md:w-1/2 w-full bg-white flex flex-col gap-4 overflow-y-auto h-full ${
         direction === "left" ? "left-0" : direction === "right" && "right-0"
       }`}
     >
