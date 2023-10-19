@@ -239,7 +239,7 @@ const Category: FC<{ name: CategoryNamesProp }> = ({ name }) => {
                 categoriesData[index].data?.products.map((product, i) => {
                   return (
                     <li key={i}>
-                      <ProductCard productDetail={product} />;
+                      <ProductCard productDetail={product} />
                     </li>
                   );
                 })}

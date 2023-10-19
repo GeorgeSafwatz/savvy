@@ -54,7 +54,7 @@ const ProductCard: FC<{ productDetail: ProductDetails }> = ({
       >
         <CartIcon />{" "}
         <p
-          className={`absolute top-0 hidden px-3 py-1 font-medium capitalize rounded-full right-10 whitespace-nowrap group-hover/item:block ${
+          className={`absolute top-8 md:top-0 hidden px-3 py-1 font-medium capitalize rounded-full right-0 md:right-10 whitespace-nowrap group-hover/item:block ${
             iExist ? "bg-red-200" : "bg-white"
           }`}
         >
