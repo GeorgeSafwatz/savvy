@@ -18,7 +18,6 @@ const ProductCard: FC<{ productDetail: ProductDetails }> = ({
     100;
 
   useEffect(() => {
-    console.log(cart.cartValue, productDetail.id);
     if (cart.cartValue.length !== 0) {
       for (const item of cart.cartValue) {
         if (item.id === productDetail.id) {

@@ -76,7 +76,7 @@ export const Overlay: FC<{
             <Button clickHandler={() => logout()}> logout</Button>
           </>
         ) : (
-          <section className="flex flex-col gap-2">
+          <section className="flex flex-col self-start gap-2">
             <p>Hi there!</p>
             <p>
               <NavLink

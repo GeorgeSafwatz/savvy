@@ -59,7 +59,6 @@ const Login = () => {
   const { state } = useLocation();
   const action = useDispatch();
   const path = state ? state.path.split("/") : "";
-  console.log(state.path);
 
   useEffect(() => {
     if (isSuccess) {
