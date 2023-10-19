@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { setSearchTerm } from "../../context/searchTermSlice";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Dropdown: FC<{
   items: string[];
@@ -9,6 +10,7 @@ const Dropdown: FC<{
   buttonLabel: string;
   setHoveredItem: (data: string) => void;
 }> = ({ items, buttonLabel, hoveredItem, setHoveredItem }) => {
+  const navigate = useNavigate();
   const action = useDispatch();
   return (
     <AnimatePresence mode="popLayout">
@@ -34,17 +36,22 @@ const Dropdown: FC<{
           onMouseLeave={() => setHoveredItem("")}
         >
           {items.map((item, i) => (
-            <motion.li
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="w-full h-full p-2 transition-all duration-200 bg-white cursor-pointer hover:bg-slate-200 whitespace-nowrap"
-              key={i}
-              onClick={() => action(setSearchTerm(item))}
-            >
-              <button>{item}</button>
-            </motion.li>
+            <NavLink to={`/search/${item.replace(" ", "+").toLowerCase()}`}>
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="w-full h-full p-2 transition-all duration-200 bg-white cursor-pointer hover:bg-slate-200 whitespace-nowrap"
+                key={i}
+                onClick={() => {
+                  action(setSearchTerm(item));
+                  navigate(`/search/${item}`);
+                }}
+              >
+                <button>{item}</button>
+              </motion.li>
+            </NavLink>
           ))}
         </motion.ul>
       )}

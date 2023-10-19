@@ -24,6 +24,11 @@ const ErrorPage: React.FC = () => {
     message = "Could not find resource or page.";
   }
 
+  if (error.status === 401) {
+    title = "Sever error ☹️!";
+    message = error.data.message;
+  }
+
   if (error.status === 403) {
     title = `Access denied!`;
     message = error.data.message;
@@ -31,9 +36,9 @@ const ErrorPage: React.FC = () => {
   return (
     <>
       <MainNavigation />
-      <main className="grid grid-cols-2">
+      <main className="grid grid-cols-2 absolute left-1/2 -translate-x-1/2 top-1/2 md:-translate-y-1/4 -translate-y-1/2">
         <PageContent title={title}>
-          <p>{message}</p>
+          <p className="whitespace-nowrap">{message}</p>
         </PageContent>
       </main>
     </>

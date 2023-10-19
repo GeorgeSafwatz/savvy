@@ -1,13 +1,28 @@
 import { motion } from "framer-motion";
 import { SearchIcon } from "../../assets/icons/icons";
+import { FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchTerm } from "../../context/searchTermSlice";
+import { useNavigate } from "react-router-dom";
 const Search = () => {
-  const submitHandler = () => {};
+  const [search, setSearch] = useState<string | undefined>("");
+  const action = useDispatch();
+  const navigate = useNavigate();
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const searchTerm = (e.target as HTMLFormElement).search.value as string;
+    action(setSearchTerm(searchTerm));
+    navigate(`/search/${searchTerm.replace(" ", "+").toLowerCase()}`);
+  };
   return (
     <form
-      onSubmit={submitHandler}
+      onSubmit={(e) => submitHandler(e)}
       className="w-full overflow-hidden rounded-md relative"
     >
       <motion.input
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSearch(e.target.value)
+        }
         type="text"
         className="relative focus:outline-none bg-slate-100 text-black font-medium border-2 focus:border-indigo-400 px-2 py-3 w-full peer "
         id="search"
@@ -47,27 +62,29 @@ const Search = () => {
           repeatType: "mirror",
         }}
       />
-      <motion.div
-        className="absolute flex flex-col gap-7 md:gap-6 top-4 md:top-3 left-3 font-medium text-slate-500 peer-focus:hidden cursor-text text-sm md:text-base"
-        initial={{ y: 0 }}
-        animate={{ y: [0, -48, -48, -48 * 2] }}
-        transition={{
-          duration: 3,
-          delay: 2.5,
-          repeat: Infinity,
-          repeatType: "mirror",
-          repeatDelay: 1.5,
-        }}
-      >
-        <label htmlFor="search">Discover Great Deals</label>
-        <label htmlFor="search">Search for Your Next Purchase</label>
-        <label
-          htmlFor="search"
-          className="w-72 md:w-full text-ellipsis overflow-hidden whitespace-nowrap"
+      {!search && (
+        <motion.div
+          className="absolute flex flex-col gap-7 md:gap-6 top-4 md:top-3 left-3 font-medium text-slate-500 peer-focus:hidden cursor-text text-sm md:text-base"
+          initial={{ y: 0 }}
+          animate={{ y: [0, -48, -48, -48 * 2] }}
+          transition={{
+            duration: 3,
+            delay: 2.5,
+            repeat: Infinity,
+            repeatType: "mirror",
+            repeatDelay: 1.5,
+          }}
         >
-          Search for Brands, Products, and More
-        </label>
-      </motion.div>
+          <label htmlFor="search">Discover Great Deals</label>
+          <label htmlFor="search">Search for Your Next Purchase</label>
+          <label
+            htmlFor="search"
+            className="w-72 md:w-full text-ellipsis overflow-hidden whitespace-nowrap"
+          >
+            Search for Brands, Products, and More
+          </label>
+        </motion.div>
+      )}
       <button
         type="submit"
         className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-50 hover:bg-slate-200 reflect scale-x-[-1] focus:ring-2 focus:ring-indigo-400"

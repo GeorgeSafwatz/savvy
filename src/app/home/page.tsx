@@ -4,64 +4,34 @@ import CategoryCard from "../../components/home/CategoryCard";
 import {
   accessoriesImage,
   clothesImage,
-  kidsSupImage,
-  mobileImage,
-  officeSupImage,
-  petsSupImage,
+  sportswearCategory,
+  giftHero,
 } from "../../assets/images";
 import ProductCard from "../../components/General-UI/ProductCard";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { ItemsListProps } from "../../props/ShopProps";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import ProductCardLoading from "../../components/loading/ProductCardLoading";
 import { repeat } from "../../utils/repeat";
-
+import { getProduct } from "../../utils/fetchProduct";
+import { Helmet } from "react-helmet";
 const HomePage = () => {
-  const mobileRef = useRef<HTMLUListElement | null>(null);
-  const mobileInView = useInView(mobileRef);
+  const accessoriesRef = useRef<HTMLUListElement | null>(null);
+  const accessoriesInView = useInView(accessoriesRef);
   const tshirtRef = useRef<HTMLUListElement | null>(null);
   const tshirtInView = useInView(tshirtRef);
-  const getProduct = async (search: string) => {
-    const options = {
-      method: "GET",
-      url: "https://asos2.p.rapidapi.com/products/v2/list",
-      params: {
-        store: "US",
-        offset: "0",
-        categoryId: "0",
-        limit: "10",
-        country: "US",
-        sort: "",
-        q: search,
-        currency: "USD",
-        sizeSchema: "US",
-        lang: "en-US",
-      },
-      headers: {
-        "X-RapidAPI-Key": "8290fcf14bmsh71b447a7c3053ebp14a6e9jsn831685ff95f0",
-        "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-      },
-    };
 
-    try {
-      const response = await axios.request(options);
-      return response.data as ItemsListProps;
-    } catch (error) {
-      throw new Error("Cannot fetch data");
-    }
-  };
   const {
     data,
-    isLoading: mobileLoading,
-    isError: mobileError,
-    isPaused: mobileRetrying,
+    isLoading: accessoriesLoading,
+    isError: accessoriesError,
+    isPaused: accessoriesRetrying,
   } = useQuery<ItemsListProps, Error>({
-    queryKey: ["mobile"],
-    queryFn: () => getProduct("phone"),
+    queryKey: ["Accessories"],
+    queryFn: () => getProduct("accessories", 10),
     refetchOnWindowFocus: false,
-    enabled: mobileInView,
+    enabled: accessoriesInView,
   });
 
   const {
@@ -71,13 +41,38 @@ const HomePage = () => {
     isPaused: tshirtRetrying,
   } = useQuery<ItemsListProps, Error>({
     queryKey: ["tshirt"],
-    queryFn: () => getProduct("t-shirt"),
+    queryFn: () => getProduct("t-shirt", 10),
     refetchOnWindowFocus: false,
     enabled: tshirtInView,
   });
 
   return (
     <article className="flex flex-col gap-2 transition-all duration-150 lg:gap-6">
+      <Helmet>
+        <Helmet>
+          <title>Savvy - Ecommerce Homepage</title>
+          <meta
+            name="description"
+            content="Savvy is an online ecommerce store with amazing deals on  fashion, accessories, home goods, and more. Visit our homepage to browse featured products."
+          />
+
+          <meta
+            name="keywords"
+            content="ecommerce, online shopping, accessories, fashion, gifts, clothes"
+          />
+
+          <meta property="og:title" content="Savvy - Ecommerce Homepage" />
+
+          <meta
+            property="og:description"
+            content="Savvy is an online ecommerce store with amazing deals on  fashion, accessories, home goods, and more. Visit our homepage to browse featured products."
+          />
+
+          <meta property="og:url" content="https://www.savvy.com/" />
+
+          <meta property="og:type" content="website" />
+        </Helmet>
+      </Helmet>
       <section className="relative w-full h-64 overflow-hidden text-center transition-all duration-150 rounded-md md:rounded-lg lg:h-96">
         <h1 className="w-1/3 m-auto my-auto mt-2 mb-4 font-serif text-xl font-medium transition-all duration-150 md:mb-6 md:mt-4 md:text-3xl lg:text-5xl">
           Get exclusive deals on millions of one-of-a-kind products.
@@ -95,28 +90,24 @@ const HomePage = () => {
         </h3>
         <section className="grid grid-cols-2 gap-2 transition-all duration-150 lg:grid-cols-3 md:gap-4">
           <CategoryCard image={clothesImage}>Shop Clothes</CategoryCard>
-          <CategoryCard image={mobileImage}>Shop Mobiles</CategoryCard>
-          <CategoryCard image={accessoriesImage} takesTwoGrid>
-            Shop Accessories
-          </CategoryCard>
-          <CategoryCard image={kidsSupImage}>Shop Kids</CategoryCard>
-          <CategoryCard image={officeSupImage}>Shop Office</CategoryCard>
-          <CategoryCard image={petsSupImage} takesTwoGrid>
-            Shop Pets
+          <CategoryCard image={giftHero}>Shop Gift</CategoryCard>
+          <CategoryCard image={accessoriesImage}>Shop Accessories</CategoryCard>
+          <CategoryCard image={sportswearCategory} takesTwoGrid>
+            Shop Sportswear
           </CategoryCard>
         </section>
       </section>
       <section className="flex flex-col gap-2 md:gap-4">
         <h3 className="text-2xl font-semibold transition-all duration-150 lg:text-3xl">
-          Mobile Accessories
+          Accessories
         </h3>
         <ul
-          ref={mobileRef}
+          ref={accessoriesRef}
           className="grid grid-cols-2 gap-2 transition-all duration-150 md:grid-cols-3 lg:grid-cols-5 md:gap-4"
         >
-          {mobileLoading && repeat(10, <ProductCardLoading />)}
-          {mobileError && <p>Something went wrong!</p>}
-          {mobileRetrying && <div className="loader animate-spin"></div>}
+          {accessoriesLoading && repeat(10, <ProductCardLoading />)}
+          {accessoriesError && <p>{}</p>}
+          {accessoriesRetrying && <div className="loader animate-spin"></div>}
           {data &&
             data.products.map((product) => {
               return <ProductCard productDetail={product} />;

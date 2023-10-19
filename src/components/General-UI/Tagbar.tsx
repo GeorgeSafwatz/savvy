@@ -21,23 +21,7 @@ const Tagbar = () => {
             "T-Shirts",
           ]}
         >
-          Clothing
-        </Tags>
-        <Tags
-          items={[
-            "Oppo",
-            "IPhone",
-            "Samsung",
-            "Huawei",
-            "Xiaomi",
-            "OnePlus",
-            "LG",
-            "Nokia",
-            "Lenovo",
-            "Google",
-          ]}
-        >
-          Mobile
+          Clothes
         </Tags>
         <Tags
           items={[
@@ -60,62 +44,19 @@ const Tagbar = () => {
         >
           Accessories
         </Tags>
+        <Tags items={["Skincare", "Makeup", "Bags", "Lotion"]}>Gift</Tags>
         <Tags
           items={[
-            "Toys",
-            "Kids Books",
-            "Kids Clothing",
-            "Kids Shoes",
-            "School Supplies",
-            "Art and Craft",
-            "Sports Equipment",
-            "Board Games",
-            "Puzzles",
-            "Electronics",
-            "Baby Gear",
+            "Leggings",
+            "Joggers",
+            "Tank Tops",
+            "Crop Tops",
+            "Sports Bras",
+            "Sports Vest",
+            "Sports Sweatpants",
           ]}
         >
-          Kids
-        </Tags>
-        <Tags
-          items={[
-            "Desk Accessories",
-            "Office Supplies",
-            "Writing Instruments",
-            "Paper Products",
-            "Office Furniture",
-            "Conference Room Equipment",
-            "Breakroom Supplies",
-            "Cleaning and Janitorial",
-            "Safety and Security",
-            "Printers and Scanners",
-            "Shredders",
-            "Presentation Tools",
-          ]}
-        >
-          Office
-        </Tags>
-        <Tags
-          items={[
-            "Dog Supplies",
-            "Cat Supplies",
-            "Bird Supplies",
-            "Fish Supplies",
-            "Small Animal Supplies",
-            "Reptile Supplies",
-            "Pet Food",
-            "Pet Treats",
-            "Pet Toys",
-            "Pet Beds",
-            "Pet Carriers",
-            "Pet Grooming",
-            "Pet Training",
-            "Pet Apparel",
-            "Pet Health and Wellness",
-            "Pet Accessories",
-          ]}
-        >
-          Pets
+          Sportswear
         </Tags>
       </div>
     </section>

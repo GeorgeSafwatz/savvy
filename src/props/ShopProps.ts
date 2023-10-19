@@ -23,7 +23,7 @@ export interface ProductDetails {
   };
   imageUrl: string;
   brandName: string;
-  additionalImageUrls: string[];
+  additionalImageUrls?: string[];
 }
 export interface ItemsListProps {
   searchTerm: string;
@@ -51,6 +51,7 @@ export interface ItemDetailsProps {
   info: {
     aboutMe: string;
     careInfo: string;
+    sizeAndFit: string;
   };
   price: {
     current: {

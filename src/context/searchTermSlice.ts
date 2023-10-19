@@ -2,7 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
-const initialState: { value: string } = { value: "" };
+const search = window.location.pathname.split("/");
+const initialState: { value: string } = {
+  value:
+    search.length === 3 && search[1] === "search"
+      ? search[2]
+      : search.length === 2
+      ? search[1]
+      : "",
+};
 
 export const searchTermSlice = createSlice({
   name: "searchTerm",

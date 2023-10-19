@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../context/store";
 import { setSearchTerm } from "../../context/searchTermSlice";
 import Dropdown from "./Dropdown";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Tags: FC<{
   children: ReactNode;
@@ -10,9 +11,11 @@ const Tags: FC<{
 }> = ({ children, items }) => {
   const searchTerm = useSelector((store: RootState) => store.searchTerm);
   const action = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const clickHandler = () => {
     const buttonContent = children?.toLocaleString();
     action(setSearchTerm(buttonContent as string));
+    navigate(`/search/${buttonContent}`);
   };
 
   const [hoveredItem, setHoveredItem] = useState<string>("");
@@ -26,7 +29,10 @@ const Tags: FC<{
     setHoveredItem("");
   };
   return (
-    <section className="relative">
+    <NavLink
+      to={`/${children?.toLocaleString().toLowerCase()}`}
+      className="relative"
+    >
       <button
         className={`
     md:px-3 md:py-2 md:text-lg
@@ -35,7 +41,7 @@ const Tags: FC<{
     focus:outline-indigo-400
     focus:outline-2
     ${
-      searchTerm.value === children?.toString() &&
+      searchTerm.value.toLowerCase() === children?.toString().toLowerCase() &&
       "border-b-blue-400 text-blue-400"
     }
     `}
@@ -51,7 +57,7 @@ const Tags: FC<{
         setHoveredItem={getHoveredItem}
         items={items}
       />
-    </section>
+    </NavLink>
   );
 };
 

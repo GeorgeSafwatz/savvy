@@ -1,9 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import searchTermReducer from "./searchTermSlice";
+import pricePropsReducer from "./fetchPropsSlice";
+import networkReducer from "./networkSlice";
+import cartReducer from "./cartSlice";
 
 export const store = configureStore({
-  reducer: { user: userReducer, searchTerm: searchTermReducer },
+  reducer: {
+    user: userReducer,
+    searchTerm: searchTermReducer,
+    priceProps: pricePropsReducer,
+    network: networkReducer,
+    cart: cartReducer,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
