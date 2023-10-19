@@ -15,7 +15,6 @@ import { useRef } from "react";
 import ProductCardLoading from "../../components/loading/ProductCardLoading";
 import { repeat } from "../../utils/repeat";
 import { getProduct } from "../../utils/fetchProduct";
-import { Helmet } from "react-helmet";
 const HomePage = () => {
   const accessoriesRef = useRef<HTMLUListElement | null>(null);
   const accessoriesInView = useInView(accessoriesRef);
@@ -48,31 +47,6 @@ const HomePage = () => {
 
   return (
     <article className="flex flex-col gap-2 transition-all duration-150 lg:gap-6">
-      <Helmet>
-        <Helmet>
-          <title>Savvy - Ecommerce Homepage</title>
-          <meta
-            name="description"
-            content="Savvy is an online ecommerce store with amazing deals on  fashion, accessories, home goods, and more. Visit our homepage to browse featured products."
-          />
-
-          <meta
-            name="keywords"
-            content="ecommerce, online shopping, accessories, fashion, gifts, clothes"
-          />
-
-          <meta property="og:title" content="Savvy - Ecommerce Homepage" />
-
-          <meta
-            property="og:description"
-            content="Savvy is an online ecommerce store with amazing deals on  fashion, accessories, home goods, and more. Visit our homepage to browse featured products."
-          />
-
-          <meta property="og:url" content="https://www.savvy.com/" />
-
-          <meta property="og:type" content="website" />
-        </Helmet>
-      </Helmet>
       <section className="relative w-full h-64 overflow-hidden text-center transition-all duration-150 rounded-md md:rounded-lg lg:h-96">
         <h1 className="w-1/3 m-auto my-auto mt-2 mb-4 font-serif text-xl font-medium transition-all duration-150 md:mb-6 md:mt-4 md:text-3xl lg:text-5xl">
           Get exclusive deals on millions of one-of-a-kind products.

@@ -11,6 +11,7 @@ import {
   increase,
   removeItem,
 } from "../../context/cartSlice";
+import { setSearchTerm } from "../../context/searchTermSlice";
 type Directions = "left" | "right";
 
 export const Backdrop: FC<{ clickHandler: () => void; toggle: boolean }> = ({
@@ -148,10 +149,11 @@ export const Overlay: FC<{
         </button>
       ) : (
         <NavLink
-          to={"/auth/login"}
+          to={"/auth/signup"}
           className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 md:px-4 md:py-2 capitalize font-medium text-lg md:text-xl hover:bg-indigo-400 bg-indigo-500 transition-all duration-150 group text-white w-fit rounded-full"
+          onClick={() => action(setSearchTerm(""))}
         >
-          you have to <span className={`group-hover:underline`}>login</span>
+          you have to <span className={`group-hover:underline`}>Register</span>
         </NavLink>
       )}
     </motion.aside>

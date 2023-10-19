@@ -55,8 +55,6 @@ const MainNavigation = () => {
     }
     window.addEventListener("online", changeStatus);
     window.addEventListener("offline", changeStatus);
-    console.log(navigator.onLine);
-    console.log(online.online);
 
     return () => {
       window.removeEventListener("online", changeStatus);

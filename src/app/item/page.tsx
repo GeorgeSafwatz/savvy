@@ -118,9 +118,11 @@ const ItemDetails = () => {
           <span>{`${data.price.current.value.toFixed(2)}${
             data.price.currency
           }`}</span>
-          <span className="text-slate-400 line-through font-normal">{`(${priceOff.toFixed(
-            2
-          )}%) off`}</span>
+          {priceOff > 0 && (
+            <span className="text-slate-400 line-through font-normal">{`(${priceOff.toFixed(
+              2
+            )}%) off`}</span>
+          )}
         </p>
         <section className="flex flex-col">
           <p className="text-lg font-semibold">Description</p>
