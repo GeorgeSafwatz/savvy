@@ -46,4 +46,4 @@ Every aspect of Savvy, from its codebase to its design, has been created from sc
 
 I hope you enjoy using Savvy as much as we enjoyed creating it!
 
-For inquiries, contact us at your-email@example.com.
+For inquiries, contact us at georgesafwat212@gmail.com.
