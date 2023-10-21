@@ -13,7 +13,7 @@ export const fetchProductDetails = async (id: string) => {
       currency: "USD",
     },
     headers: {
-      "X-RapidAPI-Key": "620b190598msh4c4876f14d0e4fcp1b5e87jsn18976f3fba24",
+      "X-RapidAPI-Key": "643a28fbbemshc9bec1b30771e8ap1b9cddjsn540e1d217731",
       "X-RapidAPI-Host": "asos2.p.rapidapi.com",
     },
   };
