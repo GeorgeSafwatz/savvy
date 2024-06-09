@@ -25,7 +25,7 @@ const ItemDetails = () => {
 
   const [imageNumber, setImageNumber] = useState(1);
   const priceOff =
-    (1 - data.price.current.value / data.price.previous.value) * 100;
+    (1 - data.price.current?.value / data.price.previous.value) * 100;
   const itemDetails: ProductDetails = {
     id: data.id,
     price: data.price,
@@ -115,7 +115,7 @@ const ItemDetails = () => {
           </p>
         </section>
         <p className="md:text-2xl text-xl font-semibold space-x-6">
-          <span>{`${data.price.current.value.toFixed(2)}${
+          <span>{`${data.price.current?.value.toFixed(2)}${
             data.price.currency
           }`}</span>
           {priceOff > 0 && (
@@ -176,7 +176,7 @@ const ItemDetails = () => {
         </section>
       </section>
       <section className="flex flex-row justify-between sticky bottom-0 md:relative bg-white p-3 md:col-start-2">
-        <p className="font-semibold text-lg">{data.price.current.text}</p>
+        <p className="font-semibold text-lg">{data.price.current?.text}</p>
         <Button clickHandler={handleCart} secondary={!itemExists}>
           {!itemExists ? "add to cart" : "remove item"}
         </Button>
