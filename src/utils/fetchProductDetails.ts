@@ -4,7 +4,7 @@ import { ItemDetailsProps } from "../props/ShopProps";
 export const fetchProductDetails = async (id: string) => {
   const options = {
     method: "GET",
-    url: "https://asos2.p.rapidapi.com/products/v3/detail",
+    url: "https://asos2.p.rapidapi.com/products/v4/detail",
     params: {
       id: id,
       lang: "en-US",
